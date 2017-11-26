@@ -18,6 +18,3 @@ Después de clonar este repositorio deberás sigue estos pasos:
     * `php artisan config:clear`
 - Edita los parámetros de tu base de datos en **.env**
 - Ejecuta `php artisan migrate:refresh --seed`
-
-- Para la migración de datos necesitarás tener las tanto la base de datos antigua como la nueva a mano (**c0aplicacion** y **delfos_db**)
-- Para hacer la migracion entra en la url `/public/migrate`
