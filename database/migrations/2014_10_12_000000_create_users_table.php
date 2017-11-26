@@ -16,10 +16,15 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            // $table->string('username'); // ->unique()
             $table->string('email')->unique();
+            $table->integer('selected_tipo')->unsigned()->default(1);
+            $table->tinyInteger('random')->default(0);
             $table->string('password');
             $table->rememberToken();
+            $table->string('api_token', 60)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
