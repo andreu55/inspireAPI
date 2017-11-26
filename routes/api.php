@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::options('{any?}', function ($any) { return response('', 200); })->where('any', '.*'); // Ruta OPTIONS atrapalotodo
+Route::post('/login', 'APIController@getLogin');
+
+Route::group(['middleware' => ['auth:api']], function() {
+
+    Route::post('/user', 'APIController@getUser');
+    Route::post('/user/edita', 'APIController@guardaUser');
+    Route::post('/user/cambiaPass', 'APIController@cambiaPass');
+
+    Route::post('inputs', 'APIController@getInputs');
 });
