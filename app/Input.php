@@ -9,8 +9,8 @@ class Input extends Model
     public function tipo() { return $this->hasOne('App\Tipo'); }
     public function user() { return $this->belongsTo('App\User'); }
 
-    // 1 => Personajes // 2 => Escenarios // 3 => Objetos // 4 => Situaciones // 5 => Temas
-    public static function deTipo($tipo_id) { return \DB::table('inputs')->where('tipo_id', $tipo_id)->where('generico', 1)->inRandomOrder()->value('name'); }
+    // 1 => Personajes // 2 => Escenarios // 3 => Objetos // 4 => Situaciones // 5 => Temas // 6 => Regiones
+    public static function deTipo($tipo_id) { return Input::inRandomOrder()->where('tipo_id', $tipo_id)->where('generico', 1)->get(); }
 
     public static function allGeneric($tipo_id) { return \DB::table('inputs')->where('tipo_id', $tipo_id)->where('generico', 1)->get(); }
 
@@ -28,7 +28,7 @@ class Input extends Model
     public static function carga($tipos, $cuantas, $user) {
       $inputs = [];
       $rand = rand(0, 99);
-      $carga_custom = $rand < $user->random;      
+      $carga_custom = $rand < $user->random;
 
       foreach ($tipos as $tipo) {
 

@@ -23,4 +23,5 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('/user/cambiaPass', 'APIController@cambiaPass');
 
     Route::post('inputs', 'APIController@getInputs');
+    Route::post('comunes', 'APIController@getComunes');
 });

@@ -207,4 +207,31 @@ class APIController extends Controller {
     return response()->json($res, 200);
   }
 
+  public function getComunes(Request $request) {
+
+    // El user logueado que ejecuta la accion
+    $user = $request->user();
+
+    // Si NO es admin
+    if (!$user->esAdmin()) {
+      $res['error'] = 'No tienes permisos.';
+      return response()->json($res, 401);
+    }
+    else {
+
+      $inputs[1] = Input::deTipo(1);
+      $inputs[2] = Input::deTipo(2);
+      $inputs[3] = Input::deTipo(3);
+      $inputs[4] = Input::deTipo(4);
+      $inputs[5] = Input::deTipo(5);
+      $inputs[6] = Input::deTipo(6);
+
+      $res['outputs'] = Output::inRandomOrder()->get();
+      $res['inputs'] = $inputs;
+
+    }
+
+    return response()->json($res, 200);
+  }
+
 }
